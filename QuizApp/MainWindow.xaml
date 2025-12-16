@@ -1,0 +1,116 @@
+﻿<Window x:Class="QuizApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QuizApp"
+        mc:Ignorable="d"
+        Title="Quiz Skorbord" Height="600" Width="1000"
+        WindowState="Maximized"
+        FontFamily="Segoe UI"
+        Background="#1e1e1e">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Control Panel -->
+        <Border Grid.Row="0" Background="#2d2d30" Padding="10" BorderBrush="#3e3e42" BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Serial Port Selection -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0,0,20,0">
+                    <TextBlock Text="Seri Port:" VerticalAlignment="Center" Foreground="White" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="cmbSerialPorts" Width="120" VerticalAlignment="Center"/>
+                    <Button x:Name="btnConnect" Content="Bağlan" Width="80" Margin="10,0,0,0" Click="BtnConnect_Click"/>
+                    <Button x:Name="btnDisconnect" Content="Bağlantıyı Kes" Width="100" Margin="5,0,0,0" Click="BtnDisconnect_Click" IsEnabled="False"/>
+                </StackPanel>
+
+                <!-- Mode Selection -->
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,20,0">
+                    <TextBlock Text="Mod:" VerticalAlignment="Center" Foreground="White" Margin="0,0,10,0"/>
+                    <RadioButton x:Name="rbModeA" Content="Mod A" Foreground="White" VerticalAlignment="Center" IsChecked="True" Margin="0,0,10,0" GroupName="Mode"/>
+                    <RadioButton x:Name="rbModeB" Content="Mod B" Foreground="White" VerticalAlignment="Center" GroupName="Mode"/>
+                </StackPanel>
+
+                <!-- Rank Selection -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,20,0">
+                    <TextBlock Text="Rank:" VerticalAlignment="Center" Foreground="White" Margin="0,0,10,0"/>
+                    <ComboBox x:Name="cmbRank" Width="100" VerticalAlignment="Center" SelectedIndex="3">
+                        <ComboBoxItem Content="Rank 1"/>
+                        <ComboBoxItem Content="Rank 2"/>
+                        <ComboBoxItem Content="Rank 3"/>
+                        <ComboBoxItem Content="Rank 4"/>
+                        <ComboBoxItem Content="Rank 5"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <!-- Reset Button -->
+                <Button x:Name="btnReset" Grid.Column="4" Content="Skorları Sıfırla" Width="120" Click="BtnReset_Click" Background="#d7a" Foreground="White"/>
+            </Grid>
+        </Border>
+
+        <!-- Scoreboard -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Team 1 Score -->
+            <Border Grid.Row="0" Background="#0078d4" CornerRadius="10" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="TAKIM 1" FontSize="48" FontWeight="Bold" 
+                               Foreground="White" HorizontalAlignment="Center" Margin="20"/>
+                    <TextBlock Grid.Row="1" x:Name="txtTeam1Score" Text="0" FontSize="180" FontWeight="Bold" 
+                               Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+
+            <!-- Separator -->
+            <Border Grid.Row="1" Height="5" Background="#3e3e42" Margin="10,0"/>
+
+            <!-- Team 2 Score -->
+            <Border Grid.Row="2" Background="#d13438" CornerRadius="10" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="TAKIM 2" FontSize="48" FontWeight="Bold" 
+                               Foreground="White" HorizontalAlignment="Center" Margin="20"/>
+                    <TextBlock Grid.Row="1" x:Name="txtTeam2Score" Text="0" FontSize="180" FontWeight="Bold" 
+                               Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="#2d2d30" Padding="10" BorderBrush="#3e3e42" BorderThickness="0,1,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txtStatus" Grid.Column="0" Text="Bağlantı bekleniyor..." Foreground="#888" VerticalAlignment="Center"/>
+                <TextBlock x:Name="txtLastEvent" Grid.Column="1" Foreground="#888" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="txtHostPress" Grid.Column="2" Text="Host: -" Foreground="#888" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
