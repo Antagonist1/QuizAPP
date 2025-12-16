@@ -94,9 +94,9 @@ public partial class Form1 : Form
     {
         if (_serialPort != null && _serialPort.IsOpen)
         {
-            string message = $"BUZZER:{team}:{mode}:{rank}\n";
+            string message = $"BUZZER:{team}:{mode}:{rank}";
             _serialPort.WriteLine(message);
-            txtStatus.Text = $"Gönderildi: {message.Trim()}";
+            txtStatus.Text = $"Gönderildi: {message}";
         }
     }
 
@@ -131,7 +131,7 @@ public partial class Form1 : Form
             _isHostPressed = true;
             _hostPressStartTime = DateTime.Now;
             _hostPressTimer?.Start();
-            _serialPort.WriteLine("HOST_PRESS:0\n");
+            _serialPort.WriteLine("HOST_PRESS:0");
             btnHostPress.BackColor = Color.LightGreen;
         }
     }
@@ -143,7 +143,7 @@ public partial class Form1 : Form
             _isHostPressed = false;
             _hostPressTimer?.Stop();
             int duration = (int)(DateTime.Now - _hostPressStartTime).TotalMilliseconds;
-            _serialPort.WriteLine($"HOST_RELEASE:{duration}\n");
+            _serialPort.WriteLine($"HOST_RELEASE:{duration}");
             btnHostPress.BackColor = SystemColors.Control;
             string pressType = duration > 1000 ? "Uzun" : "Kısa";
             txtStatus.Text = $"Host {pressType} basma gönderildi ({duration}ms)";

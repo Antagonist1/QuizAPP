@@ -55,7 +55,7 @@
                 </StackPanel>
 
                 <!-- Reset Button -->
-                <Button x:Name="btnReset" Grid.Column="4" Content="Skorları Sıfırla" Width="120" Click="BtnReset_Click" Background="#d7a" Foreground="White"/>
+                <Button x:Name="btnReset" Grid.Column="4" Content="Skorları Sıfırla" Width="120" Click="BtnReset_Click" Background="#dd77aa" Foreground="White"/>
             </Grid>
         </Border>
 
